@@ -5,9 +5,6 @@
   <title>Bibliothèque fiscale – Soufian Wielemans</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Empêcher l’indexation par les moteurs de recherche -->
-  <meta name="robots" content="noindex, nofollow">
-
   <style>
     /* ------------------------------
        VARIABLES MODE CLAIR / SOMBRE
@@ -42,22 +39,21 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: system-ui, sans-serif;
       padding: 32px 16px 48px;
       display: flex;
       justify-content: center;
       transition: background 0.3s, color 0.3s;
     }
 
-    .page { width: 100%; max-width: 1100px; }
+    .page { width: 100%; max-width: 1080px; }
 
     /* ------------------------------
        HEADER
        ------------------------------ */
     header {
-      margin-bottom: 24px;
-      padding: 22px 20px 18px;
+      margin-bottom: 32px;
+      padding: 24px;
       border-radius: 16px;
       background: var(--card);
       border: 1px solid var(--border);
@@ -65,21 +61,16 @@
       position: relative;
     }
 
-    h1 {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
 
-    .subtitle {
-      color: var(--text-soft);
-      max-width: 640px;
-      font-size: 14px;
-    }
+    .subtitle { color: var(--text-soft); max-width: 600px; }
 
-    /* Bouton mode sombre / clair */
+    /* ------------------------------
+       MODE SOMBRE / CLAIR
+       ------------------------------ */
     #theme-toggle {
       position: absolute;
-      top: 16px;
+      top: 20px;
       right: 20px;
       padding: 6px 12px;
       border-radius: 999px;
@@ -87,56 +78,40 @@
       background: var(--card);
       cursor: pointer;
       color: var(--text);
-      font-size: 13px;
     }
 
     /* ------------------------------
-       RECHERCHE
+       BARRE DE RECHERCHE
        ------------------------------ */
     #search {
       width: 100%;
-      margin-top: 16px;
-      padding: 9px 12px;
+      margin-top: 20px;
+      padding: 10px 14px;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--text);
-      font-size: 14px;
-    }
-
-    #search::placeholder {
-      color: var(--text-soft);
+      font-size: 15px;
     }
 
     /* ------------------------------
        FILTRES
        ------------------------------ */
     .filters {
-      margin-top: 14px;
+      margin-top: 16px;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      font-size: 13px;
-    }
-
-    .filters-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-      margin-right: 6px;
+      gap: 10px;
     }
 
     .filter-btn {
-      padding: 6px 11px;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--card);
       cursor: pointer;
       color: var(--text);
       transition: 0.2s;
-      font-size: 12px;
     }
 
     .filter-btn.active,
@@ -150,57 +125,29 @@
        ARTICLES
        ------------------------------ */
     main {
-      margin-top: 8px;
+      margin-top: 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 15px 14px 13px;
+      padding: 18px;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      gap: 10px;
+      transition: 0.2s;
     }
 
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(15,23,42,0.18);
-    }
+    .card-title { font-size: 17px; font-weight: 600; }
 
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.35;
-    }
+    .card-meta { font-size: 13px; color: var(--text-soft); }
 
-    .card-meta {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .card-body {
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 2px;
-    }
+    .card-body { font-size: 14px; color: var(--text-soft); }
 
     .link {
       margin-top: auto;
@@ -213,362 +160,186 @@
       border: 1px solid var(--accent);
       color: var(--accent);
       text-decoration: none;
-      font-size: 12px;
-      align-self: flex-start;
-    }
-
-    .link svg {
-      width: 13px;
-      height: 13px;
-      stroke-width: 2;
-    }
-
-    footer {
-      margin-top: 20px;
-      font-size: 11px;
-      color: var(--text-soft);
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 640px) {
-      body {
-        padding: 20px 10px 32px;
-      }
+      font-size: 13px;
     }
   </style>
 </head>
 
 <body class="dark">
+  <div class="page">
 
-<!-- 🔐 PROTECTION PAR MOT DE PASSE -->
-<script>
-  const PASSWORD = "soufian2025"; // change ce mot de passe si tu veux
+    <!-- ------------------------------
+         HEADER
+         ------------------------------ -->
+    <header>
+      <button id="theme-toggle">Mode clair</button>
 
-  const input = prompt("Mot de passe requis pour accéder au site :");
+      <h1>Bibliothèque fiscale – Soufian Wielemans</h1>
+      <p class="subtitle">
+        Articles techniques en droit fiscal belge, procédure, prix de transfert,
+        protection des données et fiscalité européenne.
+      </p>
 
-  if (input !== PASSWORD) {
-    document.body.innerHTML = `
-      <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        font-family:system-ui, sans-serif;
-        color:#e11d48;
-        font-size:20px;
-      ">
-        Accès refusé.
+      <!-- Recherche -->
+      <input id="search" type="text" placeholder="Rechercher un article...">
+
+      <!-- Filtres -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="procedure">Procédure</button>
+        <button class="filter-btn" data-filter="ue">UE & transfrontalier</button>
+        <button class="filter-btn" data-filter="rgpd">RGPD / GDPR</button>
+        <button class="filter-btn" data-filter="tp">Prix de transfert</button>
+        <button class="filter-btn" data-filter="incitant">Incitants fiscaux</button>
       </div>
-    `;
-  }
-</script>
+    </header>
 
-<div class="page">
+    <!-- ------------------------------
+         ARTICLES
+         ------------------------------ -->
+    <main id="articles">
 
-  <header>
-    <button id="theme-toggle">Mode clair</button>
+      <!-- Procédure -->
+      <article class="card" data-category="procedure" data-keywords="délai réclamation procédure anvers larcier">
+        <div class="card-title">Point de départ du délai de réclamation en matière fiscale</div>
+        <div class="card-meta">Larcier – 31 mai 2025</div>
+        <div class="card-body">
+          Analyse de la théorie de la réception, jurisprudence récente et implications pratiques.
+        </div>
+        <a class="link" href="Point de départ du délai de réclamation en matière fiscale.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <h1>Bibliothèque fiscale – Soufian Wielemans</h1>
-    <p class="subtitle">
-      Sélection d’articles et d’analyses en droit fiscal belge, procédure, prix de transfert,
-      protection des données et fiscalité européenne.
-    </p>
+      <!-- RGPD -->
+      <article class="card" data-category="rgpd" data-keywords="rgpd gdpr investigation fisc proxiumus cjue">
+        <div class="card-title">Conciliation du RGPD et les pouvoirs d'investigation de l'administration fiscale</div>
+        <div class="card-meta">Taxwin – 27 septembre 2024</div>
+        <div class="card-body">
+          Étude de compatibilité entre RGPD et pouvoirs d’enquête fiscaux.
+        </div>
+        <a class="link" href="Conciliation du RGPD et les pouvoirs d'investigation de l'administration fiscale.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- Recherche -->
-    <input id="search" type="text" placeholder="Rechercher un article, un mot-clé, une matière…">
+      <!-- RGPD NL -->
+      <article class="card" data-category="rgpd" data-keywords="gdpr néerlandais belasting administratie privacy">
+        <div class="card-title">De verzoening van de onderzoeksbevoegdheden met de GDPR</div>
+        <div class="card-meta">Taxwin – 27 septembre 2024</div>
+        <div class="card-body">
+          Version NL de l’analyse RGPD & pouvoirs fiscaux.
+        </div>
+        <a class="link" href="De verzoening van de onderzoeksbevoegdheden van de belastingadministratie met de GDPR.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- Filtres -->
-    <div class="filters">
-      <span class="filters-label">Filtrer par thème</span>
-      <button class="filter-btn active" data-filter="all">Tous</button>
-      <button class="filter-btn" data-filter="procedure">Procédure</button>
-      <button class="filter-btn" data-filter="ue">UE & transfrontalier</button>
-      <button class="filter-btn" data-filter="rgpd">RGPD / GDPR</button>
-      <button class="filter-btn" data-filter="tp">Prix de transfert</button>
-      <button class="filter-btn" data-filter="incitant">Incitants fiscaux</button>
-      <button class="filter-btn" data-filter="juris">Jurisprudence</button>
-    </div>
-  </header>
+      <!-- UE -->
+      <article class="card" data-category="ue" data-keywords="tfue ue délai investigation transfrontalier halley passenheim">
+        <div class="card-title">Délai d'investigation prolongé et fiscalité transfrontalière</div>
+        <div class="card-meta">WK – 2025</div>
+        <div class="card-body">
+          Analyse des délais prolongés à la lumière du droit européen.
+        </div>
+        <a class="link" href="Délai d'investigation prolongé et fiscalité transfrontalière - la Belgique à l'épreuve du droit fiscal européen.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-  <main id="articles">
+      <!-- DAC7 -->
+      <article class="card" data-category="procedure" data-keywords="dac7 plateforme numérique reporting diligence">
+        <div class="card-title">Directive DAC 7 – Obligations des plateformes numériques</div>
+        <div class="card-meta">Fiscactu – 2023</div>
+        <div class="card-body">
+          Présentation du champ d’application et des obligations déclaratives.
+        </div>
+        <a class="link" href="Directive DAC 7 - Nouvelles Obligations pour les Opérateurs de Plateformes Numériques en Belgique.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- Procédure – Article doctrinal -->
-    <article class="card" data-category="procedure"
-             data-keywords="délai de réclamation point de départ article 371 CIR 92 théorie de la réception cour constitutionnelle anvers 2024 larcier">
-      <div class="tag">Procédure fiscale</div>
-      <div class="card-title">Point de départ du délai de réclamation en matière fiscale</div>
-      <div class="card-meta">Doctrine – Larcier, 31 mai 2025</div>
-      <div class="card-body">
-        Étude approfondie de l’évolution du délai de réclamation : réforme de 2010,
-        théorie de la réception, jurisprudence récente (C.A. Anvers 10.09.2024) et
-        implications pratiques pour la recevabilité des recours.
-      </div>
-      <a class="link" href="Point de départ du délai de réclamation en matière fiscale.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
+      <!-- Incitant -->
+      <article class="card" data-category="incitant" data-keywords="tax shelter incitant audiovisuel jeu vidéo exonération">
+        <div class="card-title">Incitant fiscal – Tax Shelter</div>
+        <div class="card-meta">Fiscactu – 2022</div>
+        <div class="card-body">
+          Vulgarisation du régime Tax Shelter et exemple chiffré.
+        </div>
+        <a class="link" href="Incitant fiscal - Tax Shelter.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- Procédure – Cassation 23.10.2025 -->
-    <article class="card" data-category="juris procedure"
-             data-keywords="cour de cassation 23 octobre 2025 délai de réclamation avertissement extrait de rôle article 371 CIR 92 présomption d'envoi taxwin jcal vastgoed">
-      <div class="tag">Jurisprudence – Cass.</div>
-      <div class="card-title">Cass., 23 octobre 2025 – F.24.0058.N (Délai de réclamation & AER)</div>
-      <div class="card-meta">Cour de cassation, 1re chambre – 23.10.2025</div>
-      <div class="card-body">
-        La Cour confirme que la seule affirmation du contribuable selon laquelle
-        l’AER n’a pas été envoyé ne suffit pas à renverser la présomption d’envoi :
-        si l’administration soutient avoir expédié l’AER à la bonne adresse et dans
-        les formes, elle n’a pas à prouver l’envoi effectif, sauf preuve contraire
-        concrète du contribuable.
-      </div>
-      <a class="link" href="Cour de cassation - Arrêt du 23 octobre 2025 - Rôle n° F.24.0058.N (ECLI_BE_CASS_2025_ARR.20251023.1N.6) - TaxWin.pdf" target="_blank">
-        <span>Texte TaxWin</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
+      <!-- TP -->
+      <article class="card" data-category="tp" data-keywords="prix transfert cellule contrôle dempe questionnaire">
+        <div class="card-title">Prix de transfert – Cellule Prix de Transfert</div>
+        <div class="card-meta">Fiscactu – 2021</div>
+        <div class="card-body">
+          Focus sur les contrôles et le questionnaire standardisé.
+        </div>
+        <a class="link" href="Prix de transfert - Cellule Prix de Transfert, contrôle et nouveauté du questionnaire standardisé.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- Procédure – C.A. Anvers 09.01.2024 -->
-    <article class="card" data-category="juris procedure"
-             data-keywords="cour d'appel anvers 9 janvier 2024 délai de réclamation irrecevabilité réclamation tardive 1385undecies code judiciaire jcal vastgoed">
-      <div class="tag">Jurisprudence – C.A.</div>
-      <div class="card-title">C.A. Anvers, 9 janvier 2024 – 2022/AR/961</div>
-      <div class="card-meta">Cour d’appel d’Anvers, 09.01.2024</div>
-      <div class="card-body">
-        La cour d’appel considère qu’une réclamation introduite hors délai ne peut
-        être qualifiée de « recours administratif organisé par la loi » au sens de
-        l’article 1385undecies C. jud., rendant l’action judiciaire irrecevable, malgré
-        la contestation au fond de la cotisation.
-      </div>
-      <a class="link" href="apantw20240109-2022-ar-961-fr.pdf" target="_blank">
-        <span>Texte de l’arrêt</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
+      <!-- TP e-commerce -->
+      <article class="card" data-category="tp" data-keywords="transfer pricing ecommerce covid chaîne valeur marketing">
+        <div class="card-title">Révision des politiques de Transfer pricing – e-commerce</div>
+        <div class="card-meta">Fiscactu – 2020</div>
+        <div class="card-body">
+          Impact du e-commerce sur les chaînes de valeur et les politiques TP.
+        </div>
+        <a class="link" href="Révision des politiques de Transfer pricing - l'exemple du e-commerce.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- RGPD / GDPR -->
-    <article class="card" data-category="rgpd"
-             data-keywords="rgpd gdpr pouvoirs d'investigation administration fiscale article 23 mesures législatives cjue c-175/20 proximus taxwin">
-      <div class="tag">RGPD & contrôle</div>
-      <div class="card-title">Conciliation du RGPD et les pouvoirs d'investigation de l'administration fiscale</div>
-      <div class="card-meta">TaxWin – 27 septembre 2024</div>
-      <div class="card-body">
-        Analyse de la compatibilité des demandes massives d’informations par
-        l’administration fiscale avec les principes de licéité, minimisation et
-        proportionnalité du RGPD, à la lumière de l’arrêt CJUE C‑175/20 et du
-        jugement Proximus.
-      </div>
-      <a class="link" href="Conciliation du RGPD et les pouvoirs d'investigation de l'administration fiscale.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
+      <!-- RGFCP -->
+      <article class="card" data-category="tp" data-keywords="options actions manco back to back loi 1999 rémunération">
+        <div class="card-title">Plans d'options sur actions et société de management</div>
+        <div class="card-meta">RGFCP – 2025</div>
+        <div class="card-body">
+          Analyse complète du mécanisme back‑to‑back et implications fiscales.
+        </div>
+        <a class="link" href="Revue Générale de Fiscalité et de comptabilité pratique.pdf" target="_blank">Ouvrir le PDF</a>
+      </article>
 
-    <!-- RGPD NL -->
-    <article class="card" data-category="rgpd"
-             data-keywords="gdpr onderzoeksbevoegdheden belastingadministratie proximus privacy minimisatie">
-      <div class="tag">GDPR / NL</div>
-      <div class="card-title">De verzoening van de onderzoeksbevoegdheden met de GDPR</div>
-      <div class="card-meta">TaxWin – 27 septembre 2024</div>
-      <div class="card-body">
-        Version néerlandaise de l’analyse des pouvoirs d’enquête fiscaux au regard
-        du GDPR et de la jurisprudence européenne et belge.
-      </div>
-      <a class="link" href="De verzoening van de onderzoeksbevoegdheden van de belastingadministratie met de GDPR.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
+    </main>
+  </div>
 
-    <!-- UE / transfrontalier -->
-    <article class="card" data-category="ue"
-             data-keywords="délai d'investigation prolongé fiscalité transfrontalière mère fille intérêts redevances tfue 56 63 passenheim halley">
-      <div class="tag">UE & délais</div>
-      <div class="card-title">Délai d'investigation prolongé et fiscalité transfrontalière</div>
-      <div class="card-meta">Actualités fiscales – WK, n° 2025/31</div>
-      <div class="card-body">
-        Appréciation de la compatibilité des délais d’investigation prolongés en
-        matière de retenue à la source avec les libertés fondamentales garanties
-        par les articles 56 et 63 TFUE, à la lumière des arrêts Passenheim-van
-        Schoot et Halley.
-      </div>
-      <a class="link" href="Délai d'investigation prolongé et fiscalité transfrontalière - la Belgique à l'épreuve du droit fiscal européen.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
-
-    <!-- DAC 7 -->
-    <article class="card" data-category="procedure"
-             data-keywords="dac 7 directive plateformes numériques opérateurs reporting due diligence cir 92 321 sexies">
-      <div class="tag">Transparence</div>
-      <div class="card-title">Directive DAC 7 : Nouvelles obligations pour les opérateurs de plateformes</div>
-      <div class="card-meta">Fiscactu – 7 août 2023</div>
-      <div class="card-body">
-        Présentation des obligations d’enregistrement, de collecte et de
-        communication d’informations imposées aux plateformes numériques
-        par la transposition belge de DAC 7, ainsi que du régime de sanctions.
-      </div>
-      <a class="link" href="Directive DAC 7 - Nouvelles Obligations pour les Opérateurs de Plateformes Numériques en Belgique.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
-
-    <!-- Incitant fiscal – Tax Shelter -->
-    <article class="card" data-category="incitant"
-             data-keywords="tax shelter incitant fiscal audiovisuel scènes jeux vidéo exonération 421 pourcent exemple comptable">
-      <div class="tag">Incitant fiscal</div>
-      <div class="card-title">Incitant fiscal – Tax Shelter</div>
-      <div class="card-meta">Fiscactu – 14 septembre 2022</div>
-      <div class="card-body">
-        Vulgarisation du régime Tax Shelter pour les œuvres audiovisuelles, scéniques
-        et les jeux vidéo : conditions, plafond, calcul de l’avantage et schémas
-        d’écritures comptables illustrés.
-      </div>
-      <a class="link" href="Incitant fiscal - Tax Shelter.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
-
-    <!-- Prix de transfert – Cellule TP -->
-    <article class="card" data-category="tp"
-             data-keywords="prix de transfert cellule tp contrôle questionnaire standardisé dempe 26 79 185 207 cir">
-      <div class="tag">Transfer pricing</div>
-      <div class="card-title">Prix de transfert : Cellule Prix de Transfert & questionnaire standardisé</div>
-      <div class="card-meta">Fiscactu – 1er février 2021</div>
-      <div class="card-body">
-        Focus sur les contrôles de la Cellule Prix de Transfert : contenu du
-        questionnaire actualisé, demandes de comptes analytiques, informations
-        DEMPE et impact des ajustements sur la charge fiscale effective.
-      </div>
-      <a class="link" href="Prix de transfert - Cellule Prix de Transfert, contrôle et nouveauté du questionnaire standardisé.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
-
-    <!-- TP – e-commerce -->
-    <article class="card" data-category="tp"
-             data-keywords="transfer pricing e-commerce covid chaîne de valeur marketing distribution documenter politique">
-      <div class="tag">TP & business</div>
-      <div class="card-title">Révision des politiques de Transfer pricing : l’exemple du e-commerce</div>
-      <div class="card-meta">Fiscactu – 30 novembre 2020</div>
-      <div class="card-body">
-        Article co-rédigé : impact de la crise sanitaire et du basculement vers
-        l’e-commerce sur la chaîne de valeur intragroupe et la nécessaire adaptation
-        des politiques de prix de transfert.
-      </div>
-      <a class="link" href="Révision des politiques de Transfer pricing - l'exemple du e-commerce.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
-
-    <!-- RGFCP – options sur actions & Manco -->
-    <article class="card" data-category="tp"
-             data-keywords="options sur actions loi 26 mars 1999 société de management back-to-back rémunération théorie de la rémunération rgfcp 2025">
-      <div class="tag">RGFCP</div>
-      <div class="card-title">Plans d’options sur actions et société de management</div>
-      <div class="card-meta">Revue Générale de Fiscalité & de Comptabilité pratique – 2025/9</div>
-      <div class="card-body">
-        Contribution doctrinale sur l’application du régime des stock-options
-        aux structures avec société de management, la mécanique du back-to-back,
-        les enjeux comptables, TVA et la théorie de la rémunération, avec une analyse
-        des réformes envisagées.
-      </div>
-      <a class="link" href="Revue Générale de Fiscalité et de comptabilité pratique.pdf" target="_blank">
-        <span>Ouvrir le PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M7 17L17 7M8 7H17V16" />
-        </svg>
-      </a>
-    </article>
-
-  </main>
-
-  <footer>
-    <div>© Soufian Wielemans – Bibliothèque personnelle.</div>
-    <div>Dernière mise à jour : 19/12/2025.</div>
-  </footer>
-</div>
-
-<script>
-  // MODE SOMBRE / CLAIR
-  const toggle = document.getElementById("theme-toggle");
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    toggle.textContent = document.body.classList.contains("dark")
-      ? "Mode clair"
-      : "Mode sombre";
-  });
-
-  // FILTRES & RECHERCHE
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".card");
-  const searchInput = document.getElementById("search");
-  let activeFilter = "all";
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeFilter = btn.dataset.filter;
-      applyFilters();
+  <!-- ------------------------------
+       SCRIPT JS
+       ------------------------------ -->
+  <script>
+    /* MODE SOMBRE / CLAIR */
+    const toggle = document.getElementById("theme-toggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      toggle.textContent = document.body.classList.contains("dark")
+        ? "Mode clair"
+        : "Mode sombre";
     });
-  });
 
-  searchInput.addEventListener("input", applyFilters);
+    /* FILTRES */
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".card");
 
-  function applyFilters() {
-    const query = searchInput.value.toLowerCase();
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-    cards.forEach(card => {
-      const category = card.dataset.category || "";
-      const keywords = (card.dataset.keywords || "").toLowerCase();
-      const title = card.querySelector(".card-title").textContent.toLowerCase();
+        const filter = btn.dataset.filter;
 
-      const matchesFilter =
-        activeFilter === "all" ||
-        category.split(" ").includes(activeFilter);
-
-      const matchesSearch =
-        !query ||
-        keywords.includes(query) ||
-        title.includes(query);
-
-      card.style.display = matchesFilter && matchesSearch ? "flex" : "none";
+        cards.forEach(card => {
+          const category = card.dataset.category;
+          card.style.display =
+            filter === "all" || category === filter ? "flex" : "none";
+        });
+      });
     });
-  }
 
-  // Premier rendu
-  applyFilters();
-</script>
+    /* RECHERCHE PAR MOTS-CLÉS */
+    const searchInput = document.getElementById("search");
 
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+
+      cards.forEach(card => {
+        const keywords = card.dataset.keywords.toLowerCase();
+        const title = card.querySelector(".card-title").textContent.toLowerCase();
+
+        card.style.display =
+          keywords.includes(query) || title.includes(query)
+            ? "flex"
+            : "none";
+      });
+    });
+  </script>
 </body>
 </html>
-
